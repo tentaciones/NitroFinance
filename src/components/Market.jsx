@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { BsPlus } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { MarketHero, Borrow, WithdrawCollateral, AddCollateral } from ".";
-import SuccessModal from "./SuccessModal";
+import {
+  MarketHero,
+  Borrow,
+  WithdrawCollateral,
+  AddCollateral,
+  SuccessModal,
+} from ".";
+import { PoolContext } from "../context/PoolContext";
 const Market = () => {
   const [showBorrow, setShowBorrow] = useState(true);
   const [showAddCollateral, setShowAddCollateral] = useState(false);
   const [showWithdrawCollateral, setShowWithdrawCollateral] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const [transactionHash, setTransactionHash] = useState(null);
+  const { transactionHash, showSuccessModal, setShowSuccessModal } =
+    useContext(PoolContext);
   const onShowBorrowHandler = () => {
     setShowAddCollateral(false);
     setShowWithdrawCollateral(false);
@@ -109,7 +115,7 @@ const Market = () => {
         <div className="-mt-[600px]">
           <SuccessModal
             className=""
-            transactionHash="{transactionHash}"
+            transactionHash={transactionHash}
             setShowSuccessModal={setShowSuccessModal}
           />
         </div>

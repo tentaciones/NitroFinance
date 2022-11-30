@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import NFTManagerAbi from "../contract/NFTManagerAbi.json";
 import FactoryContractAbi from "../contract/FactoryContractAbi.json";
 import sol4Abi from "../contract/Sol4.json";
+import collateralAbi from "../contract/UsdcAbi.json";
 export const PoolContext = createContext();
 
 export const Logic = ({ children }) => {
@@ -21,6 +22,12 @@ export const Logic = ({ children }) => {
   const [token1, setToken1] = useState("");
   const [sol4Contract, setSol4Contract] = useState(null);
   const [locusItem, setLocusItem] = useState(null);
+  const [collateralcontract, setCollateral] = useState(null);
+  const [approved, setApproved] = useState(false);
+  const [buttonText, setButtonText] = useState("Approve");
+  const [collateralContractAddress, setCollateralContractAddress] =
+    useState(null);
+  const [amount, setAmount] = useState("");
 
   const updateEthers = () => {
     let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
@@ -102,6 +109,65 @@ export const Logic = ({ children }) => {
     setLocusItem(txn);
   };
 
+  const updateEthersAddCollateral = async (sol4ContractAddress) => {
+    let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
+    let tempSigner = tempProvider.getSigner();
+    let sol4Contract = new ethers.Contract(
+      sol4ContractAddress,
+      sol4Abi,
+      tempSigner
+    );
+
+    setSol4Contract(sol4Contract);
+    let collateralContractAddress = await sol4Contract.token0();
+    let collateralcontract = new ethers.Contract(
+      collateralContractAddress,
+      collateralAbi,
+      tempSigner
+    );
+    setCollateralContractAddress(collateralContractAddress);
+    setCollateral(collateralcontract);
+  };
+
+  const appoveCollateralHandler = async (e, sol4ContractAddress) => {
+    updateEthersAddCollateral(sol4ContractAddress);
+    console.log(sol4ContractAddress);
+    let amount = e.target.amount.value;
+    let txn = collateralcontract.approve(sol4ContractAddress, amount);
+    setAmount(e.target.value);
+    setApproved(true);
+
+    setButtonText("Add");
+  };
+
+  const addCollateralHandler = async (e, sol4ContractAddress) => {
+    e.preventDefault();
+    updateEthersAddCollateral(sol4ContractAddress);
+
+    let usdcAmount = e.target.amount.value;
+    let txn = await sol4Contract.addCollateral(usdcAmount);
+    SetTransactionHash(txn.hash);
+    setShowSuccessModal(true);
+    setApproved(false);
+
+    setButtonText("Approve");
+    setAmount("");
+    console.log(txn);
+  };
+
+  const addCollateral = async (e, sol4ContractAddress) => {
+    e.preventDefault();
+    {
+      approved
+        ? addCollateralHandler(e, sol4ContractAddress)
+        : appoveCollateralHandler(
+            e,
+            sol4ContractAddress,
+            collateralContractAddress
+          );
+    }
+  };
+
   const updateBlockNumber = async () => {
     let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
     let tx = await tempProvider.getBlockNumber();
@@ -137,6 +203,11 @@ export const Logic = ({ children }) => {
         myPositionItem,
         showLocusItemHandler,
         locusItem,
+        addCollateral,
+        buttonText,
+        setShowSuccessModal,
+        setAmount,
+        amount,
       }}
     >
       {children}

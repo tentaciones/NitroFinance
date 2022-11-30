@@ -102,6 +102,22 @@ export const Logic = ({ children }) => {
     setSol4Contract(sol4Contract);
   };
 
+  const BorrowHandler = async (e, sol4ContractAddress) => {
+    e.preventDefault();
+    updateEthersSol4Contract(sol4ContractAddress);
+    let collateralFactor = e.target.collateralFactor.value;
+    let interestRate = e.target.interestRate.value;
+    let usdcAmount = e.target.usdcAmount.value;
+    let txn = await sol4Contract.borrow(
+      collateralFactor,
+      interestRate,
+      usdcAmount
+    );
+    SetTransactionHash(txn.hash);
+    setShowSuccessModal(true);
+    console.log(txn);
+  };
+
   const withdrawHandler = async (e, sol4ContractAddress) => {
     e.preventDefault();
     updateEthersSol4Contract(sol4ContractAddress);
@@ -220,6 +236,7 @@ export const Logic = ({ children }) => {
         setAmount,
         amount,
         withdrawHandler,
+        BorrowHandler,
       }}
     >
       {children}

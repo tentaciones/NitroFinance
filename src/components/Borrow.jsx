@@ -1,44 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { MyDropDown } from ".";
-import { ethers } from "ethers";
-import Sol4Abi from "../contract/Sol4.json";
+import { PoolContext } from "../context/PoolContext";
 const Borrow = () => {
   const [selected, setSelected] = useState(null);
-  const [sol4Contract, setSol4Contract] = useState(null);
   const pull_Data = (data) => {
     setSelected(data);
   };
 
+  const { BorrowHandler } = useContext(PoolContext);
+
   let sol4ContractAddress = selected;
 
-  const updateEthers = async () => {
-    let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
-    let tempSigner = tempProvider.getSigner();
-    let address = tempSigner.getAddress();
-    let sol4Contract = new ethers.Contract(
-      sol4ContractAddress,
-      Sol4Abi,
-      tempSigner
-    );
-    setSol4Contract(sol4Contract);
-  };
-
-  const BorrowHandler = async (e) => {
-    e.preventDefault();
-    updateEthers();
-    let collateralFactor = e.target.collateralFactor.value;
-    let interestRate = e.target.interestRate.value;
-    let usdcAmount = e.target.usdcAmount.value;
-    let txn = await sol4Contract.borrow(
-      collateralFactor,
-      interestRate,
-      usdcAmount
-    );
-    console.log(txn);
+  const borrow = async (e) => {
+    BorrowHandler(e, sol4ContractAddress);
   };
 
   return (
-    <form onSubmit={BorrowHandler}>
+    <form onSubmit={borrow}>
       <div className="w-full mt-5 px-5">
         <MyDropDown func={pull_Data} />
         <div className="flex space-x-5 mt-5">

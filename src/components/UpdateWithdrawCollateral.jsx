@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { ethers } from "ethers";
 import Sol4Abi from "../contract/Sol4.json";
 import { useParams } from "react-router-dom";
-
+import SuccessModal from "./SuccessModal";
 const UpdateWithdrawCollateral = () => {
   const { address } = useParams();
   const [sol4Contract, setSol4Contract] = useState(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [transactionHash, setTransactionHash] = useState(null);
   let sol4ContractAddress = address;
 
   const updateEthers = () => {
@@ -25,6 +27,8 @@ const UpdateWithdrawCollateral = () => {
 
     let amount = e.target.amount.value;
     let txn = await sol4Contract.withdrawCollateral(amount);
+    setTransactionHash(txn.hash);
+    setShowSuccessModal(true);
     console.log(txn);
   };
 
@@ -48,6 +52,17 @@ const UpdateWithdrawCollateral = () => {
           withdraw
         </button>
       </div>
+      {showSuccessModal ? (
+        <div className="mt-[200px]">
+          <SuccessModal
+            className="-mt-[1000px] "
+            transactionHash={transactionHash}
+            setShowSuccessModal={setShowSuccessModal}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
     </form>
   );
 };

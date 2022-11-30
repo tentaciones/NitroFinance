@@ -82,11 +82,13 @@ const UpdataAddCollateral = () => {
         </button>
       </div>
       {showSuccessModal ? (
-        <SuccessModal
-          className="-mt-[1000px] "
-          transactionHash={transactionHash}
-          setShowSuccessModal={setShowSuccessModal}
-        />
+        <div className="mt-[200px]">
+          <SuccessModal
+            className="-mt-[1000px] "
+            transactionHash={transactionHash}
+            setShowSuccessModal={setShowSuccessModal}
+          />
+        </div>
       ) : (
         <></>
       )}

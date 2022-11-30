@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react";
-import { ethers } from "ethers";
+
 import { MyDropDown } from ".";
-import collateralAbi from "../contract/UsdcAbi.json";
-import Sol4Abi from "../contract/Sol4.json";
+
 import { PoolContext } from "../context/PoolContext";
 
 const AddCollateral = () => {

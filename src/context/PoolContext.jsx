@@ -102,6 +102,17 @@ export const Logic = ({ children }) => {
     setSol4Contract(sol4Contract);
   };
 
+  const withdrawHandler = async (e, sol4ContractAddress) => {
+    e.preventDefault();
+    updateEthersSol4Contract(sol4ContractAddress);
+
+    let amount = e.target.amount.value;
+    let txn = await sol4Contract.withdrawCollateral(amount);
+    SetTransactionHash(txn.hash);
+    setShowSuccessModal(true);
+    console.log(txn);
+  };
+
   const showLocusItemHandler = async (sol4ContractAddress) => {
     updateEthersSol4Contract(sol4ContractAddress);
     let txn = await sol4Contract.getAllExistingLocus();
@@ -208,6 +219,7 @@ export const Logic = ({ children }) => {
         setShowSuccessModal,
         setAmount,
         amount,
+        withdrawHandler,
       }}
     >
       {children}

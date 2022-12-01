@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { PoolContext } from "../context/PoolContext";
-
+import { Link } from "react-router-dom";
 const BorrowItem = ({ showBorrow, borrowQuery }) => {
   const { getallUserBorrowItem, borrowItem } = useContext(PoolContext);
 
@@ -23,15 +23,20 @@ const BorrowItem = ({ showBorrow, borrowQuery }) => {
         })
         .map(({ _contractAddress, _token0, _token1 }) => {
           return (
-            <div
-              className="h-10 bg-[#10101B] border  rounded-md px-5 flex items-center justify-between border-indigo-600 hover:cursor-pointer"
-              onClick={() => showBorrow()}
-            >
-              <p>{_contractAddress}</p>
-              <p>
-                {_token1}/{_token0}
-              </p>
-            </div>
+            <Link to={"/dashboard/" + _contractAddress} key={_contractAddress}>
+              <div
+                className="h-10 bg-[#10101B] border  rounded-md px-8 flex items-center justify-between border-indigo-600 hover:cursor-pointer"
+                onClick={() => showBorrow()}
+              >
+                <p>
+                  {_contractAddress.toString().slice(0, 10)}...
+                  {_contractAddress.toString().slice(-8)}
+                </p>
+                <p>
+                  {_token1}/{_token0}
+                </p>
+              </div>
+            </Link>
           );
         })}
     </>

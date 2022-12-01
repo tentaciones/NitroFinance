@@ -46,10 +46,10 @@ const Repay = () => {
   return (
     <form onSubmit={repay}>
       <div className="w-full mt-5 px-5">
-        <div className="flex  px-5 text-xl">
+        <div className="flex  px-5 text-xl mt-10">
           <p className="w-1/2">Borrowed value</p>
           <div className="bg-[#10101B] w-1/2 flex justify-center items-center rounded-md h-10">
-            <p>{borrowedValue}</p>{" "}
+            <p className="text-sm">{borrowedValue}</p>{" "}
           </div>
         </div>
         <input

@@ -73,6 +73,7 @@ function App() {
                 path="/createPosition/:token0/:token1/:address"
                 element={<CreatePositionPage />}
               />
+
               <Route path="/positions" element={<PositionPage />} />
               <Route
                 path="/positions/:token0/:token1/:market/:colFactor/:intRate/:nftId"
@@ -85,7 +86,7 @@ function App() {
               />
               <Route path="/myPosition" element={<MyPositionPage />} />
               <Route
-                path="/removeLiquidity"
+                path="/removeLiquidity/:token0/:token1/:address/:colFactor/:intRate"
                 element={<DecreaseLiquidityPage />}
               />
               <Route path="/MyNftPositions" element={<NftListPage />} />

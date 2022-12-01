@@ -2,14 +2,14 @@ import {
   MdOutlineArrowBackIos,
   MdSentimentVerySatisfied,
 } from "react-icons/md";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ethers } from "ethers";
-import sol4Abi from "../contract/Sol4.json";
+import { PoolContext } from "../context/PoolContext";
 const MarkettemExapnded = ({ close }) => {
   const { token0, token1, address, colFactor, intRate } = useParams();
-  const [sol4Contract, setSol4Contract] = useState(null);
-  const [availableLiquidity, setAvailableLiquidity] = useState(null);
+  const { tmcr, air, colValue, debt, availableLiquidity, getPoolDataHandler } =
+    useContext(PoolContext);
+  /*const [availableLiquidity, setAvailableLiquidity] = useState(null);
   const [tempSigner, setTempSigner] = useState(null);
   const [debt, setDebt] = useState(null);
   const [colValue, setColValue] = useState(null);
@@ -38,11 +38,11 @@ const MarkettemExapnded = ({ close }) => {
     setAvailableLiquidity("$" + availableLiquidity.toString());
     setDebt("$" + debt.toString());
     setColValue("$" + colValue.toString());
-  };
+  };*/
 
   useEffect(() => {
     getPoolDataHandler();
-  });
+  }, []);
 
   return (
     <div className=" w-full h-full px-5 pt-10">

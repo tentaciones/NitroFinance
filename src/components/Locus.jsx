@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 const Locus = ({ show }) => {
   const [showLocusItemExpanded, setShowLocusItemExpanded] = useState(false);
   const { token0, token1, address } = useParams();
+  const [query, setQuery] = useState("");
   const onShowLocusItemExpanded = () => {
     setShowLocusItemExpanded(true);
   };
@@ -33,6 +34,7 @@ const Locus = ({ show }) => {
                 type="text"
                 className=" relative  tablet:h-[30px] h-[30px] outline-none bg-[#121E28] tablet:px-20 laptop:w-[300px] px-[30px] tablet:rounded-3xl rounded-xl tablet:w-[50px] w-full tablet:mr-0 mr-[10px]  placeholder:text-[#BEBEBE] outline-indigo-600 "
                 placeholder="search"
+                onChange={(e) => setQuery(e.target.value)}
               />
               <BiSearch className=" absolute text-xl tablet:mx-10 mx-2" />
             </div>
@@ -42,6 +44,7 @@ const Locus = ({ show }) => {
           expanded={onShowLocusItemExpanded}
           close={onShowLocusItemNotExpanded}
           isExpanded={showLocusItemExpanded}
+          query={query}
         />
       </div>
     </div>

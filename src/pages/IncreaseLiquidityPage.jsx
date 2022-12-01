@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Footer, IncreaseAndDecreaseLiquidity } from "../components";
+import { Navbar, Footer, IncreaseLiquidity } from "../components";
 const IncreaseLiquidityPage = () => {
   return (
     <div
@@ -10,7 +10,7 @@ const IncreaseLiquidityPage = () => {
       }}
     >
       <Navbar />
-      <IncreaseAndDecreaseLiquidity />
+      <IncreaseLiquidity />
       <Footer />
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Borrow, Repay } from ".";
+import { Repay } from ".";
+import UpdateBorrows from "./UpdateBorrows";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 const DashBoardRepayBorrow = ({ back }) => {
   const [showModal, setShowModal] = useState(false);
@@ -56,7 +57,7 @@ const DashBoardRepayBorrow = ({ back }) => {
           </p>
         )}
       </div>
-      {showModal ? <Repay /> : <Borrow />}
+      {showModal ? <Repay /> : <UpdateBorrows />}
     </div>
   );
 };

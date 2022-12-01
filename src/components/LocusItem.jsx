@@ -6,34 +6,20 @@ import { MarkettemExapnded } from ".";
 import sol4Abi from "../contract/Sol4.json";
 import { PoolContext } from "../context/PoolContext";
 
-const LocusItem = ({ expanded, close, isExpanded }) => {
+const LocusItem = ({ expanded, close, isExpanded, query }) => {
   const { address, token0, token1 } = useParams();
   let sol4ContractAddress = address;
-  const { locusItem, showLocusItemHandler } = useContext(PoolContext);
-
-  /*const [sol4Contract, setSol4Contract] = useState(null);
-  const [locusItem, setLocusItem] = useState(null);
-  const updateEthers = () => {
-    let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
-    let tempSigner = tempProvider.getSigner();
-    let sol4Contract = new ethers.Contract(
-      sol4ContractAddress,
-      sol4Abi,
-      tempSigner
-    );
-    setSol4Contract(sol4Contract);
-  };
-  const showLocusItemHandler = async () => {
-    updateEthers();
-    let txn = await sol4Contract.getAllExistingLocus();
-
-    setLocusItem(txn);
-  };*/
+  const { locusItem, showLocusItemHandler, getPoolDataHandler } =
+    useContext(PoolContext);
 
   useEffect(() => {
     showLocusItemHandler(sol4ContractAddress);
   }, []);
 
+  const get = async (sol4ContractAddress, interestRate, CollateralFactor) => {
+    getPoolDataHandler(sol4ContractAddress, interestRate, CollateralFactor);
+    expanded();
+  };
   return (
     <div>
       {isExpanded ? (
@@ -48,47 +34,66 @@ const LocusItem = ({ expanded, close, isExpanded }) => {
             <p>Active interest</p>
             <p>Invariant Rate</p>
           </div>
-          {locusItem?.map(
-            ({
-              collateralFactor,
-              interestRate,
-              locusId,
-              liquidity,
-              k,
-              initialized,
-            }) => {
-              return (
-                <Link
-                  to={
-                    "/market/" +
-                    token0 +
-                    "/" +
-                    token1 +
-                    "/" +
-                    +address +
-                    "/" +
-                    collateralFactor +
-                    "/" +
-                    interestRate
-                  }
-                  key={locusId.toString()}
-                >
-                  <div
-                    className="flex justify-between items-center px-5 mt-5 bg-black rounded-md h-10 hover:cursor-pointer"
-                    onClick={() => expanded()}
+          {locusItem
+            ?.filter((data) => {
+              return query.toLowerCase() === ""
+                ? data
+                : data.liquidity
+                    .toString()
+                    .toLowerCase()
+                    .includes(query.toLowerCase()) ||
+                    data.interestRate
+                      .toString()
+                      .toLowerCase()
+                      .includes(query.toLowerCase()) ||
+                    data.collateralFactor
+                      .toString()
+                      .toLowerCase()
+                      .includes(query.toLowerCase());
+            })
+            .map(
+              ({
+                collateralFactor,
+                interestRate,
+                locusId,
+                liquidity,
+                k,
+                initialized,
+              }) => {
+                return (
+                  <Link
+                    to={
+                      "/market/" +
+                      token0 +
+                      "/" +
+                      token1 +
+                      "/" +
+                      +address +
+                      "/" +
+                      collateralFactor +
+                      "/" +
+                      interestRate
+                    }
+                    key={locusId.toString()}
                   >
-                    <p>
-                      {collateralFactor.toString()}-{interestRate.toString()}
-                    </p>
-                    <p>${liquidity.toString()}</p>
-                    <p>{k.toString()}K</p>
-                    <p>50%</p>
-                    <p>5%</p>
-                  </div>
-                </Link>
-              );
-            }
-          )}
+                    <div
+                      className="flex justify-between items-center px-5 mt-5 bg-black rounded-md h-10 hover:cursor-pointer"
+                      onClick={() =>
+                        get(address, interestRate, collateralFactor)
+                      }
+                    >
+                      <p>
+                        {collateralFactor.toString()}-{interestRate.toString()}
+                      </p>
+                      <p>${liquidity.toString()}</p>
+                      <p>{k.toString()}K</p>
+                      <p>50%</p>
+                      <p>5%</p>
+                    </div>
+                  </Link>
+                );
+              }
+            )}
         </>
       )}
     </div>

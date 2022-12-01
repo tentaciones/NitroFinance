@@ -37,7 +37,7 @@ const UpdateWithdrawCollateral = () => {
       <div className="w-full mt-10 px-5">
         <input
           type="number"
-          className=" w-full bg-[#10101B] outline-none mt-5 h-[50px] rounded-md px-5 hover:border-indigo-600 focus:border-indigo-600 placeholder:text-[#999999]"
+          className=" w-full bg-[#10101B] outline-none mt-5 h-20 rounded-md px-5 hover:border-indigo-600 focus:border-indigo-600 placeholder:text-[#999999]"
           placeholder="Amount 0.0"
           id="amount"
         />

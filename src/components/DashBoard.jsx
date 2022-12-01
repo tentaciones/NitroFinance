@@ -46,6 +46,10 @@ const DashBoard = () => {
                 <BiSearch className=" absolute text-xl tablet:mx-10 mx-2" />
               </div>
             </div>
+            <div className="flex px-[60px] justify-between -mt-3">
+              <p>Market Address</p>
+              <p>Pair</p>
+            </div>
             <BorrowItem
               showBorrow={onshowBorrowHandler}
               borrowQuery={borrowQuery}

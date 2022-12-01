@@ -12,7 +12,7 @@ const PositionItems = ({ open, positionQuery }) => {
 
   const get = async (sol4ContractAddress, id, colFactor, intRate) => {
     getNftData(sol4ContractAddress, id, colFactor, intRate);
-    open();
+    //open();
   };
 
   return (

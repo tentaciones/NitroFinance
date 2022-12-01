@@ -9,7 +9,7 @@ import { ethers } from "ethers";
 import Sol4Abi from "../contract/Sol4.json";
 
 const RemoveLiquidity = () => {
-  const { address, token0, token1 } = useParams();
+  const { address, token0, token1, colFactor, intRate } = useParams();
   let sol4ContractAddress = address;
 
   const [sol4Contractt, setsol4Contract] = useState(null);
@@ -83,7 +83,7 @@ const RemoveLiquidity = () => {
               <div className="flex items-center px-5 space-x-3">
                 <IoNavigateCircleOutline className="text-2xl text-[#E7E7E7]" />
                 <p className="text-2xl ">
-                  {ColFactor}-{intrate}
+                  {colFactor}-{intRate}
                 </p>
               </div>
             </div>
@@ -99,12 +99,14 @@ const RemoveLiquidity = () => {
                 className="w-full h-[70px] rounded-xl mt-5 relative bg-[#221E2B] px-10 placeholder:text-[#999999] outline-none"
                 placeholder="colfactor %"
                 id="ColFactor"
+                value={colFactor}
               />
               <input
                 type="number"
                 className="w-full h-[70px] rounded-xl mt-5 relative bg-[#221E2B] px-10 placeholder:text-[#999999] outline-none"
                 placeholder="interestRate %"
                 id="interest"
+                value={intRate}
               />
             </div>
 

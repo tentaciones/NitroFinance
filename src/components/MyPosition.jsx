@@ -7,7 +7,8 @@ import { PoolContext } from "../context/PoolContext";
 
 const MyPosition = () => {
   const { token0, token1, market, nftId, colFactor, intRate } = useParams();
-  const { image } = useContext(PoolContext);
+  const { image, utilisationRate, myPositionSize, valueOfInvriant } =
+    useContext(PoolContext);
   return (
     <div className=" py-32 tablet:px-[300px]  px-2 font-display">
       <Link to="/positions">
@@ -37,7 +38,20 @@ const MyPosition = () => {
               + Increase Liquidity
             </button>
           </Link>
-          <Link to={"/removeLiquidity/"}>
+          <Link
+            to={
+              "/removeLiquidity/" +
+              token0 +
+              "/" +
+              token1 +
+              "/" +
+              market +
+              "/" +
+              colFactor +
+              "/" +
+              intRate
+            }
+          >
             <button className="bg-[#121E28] border rounded-lg text-white tablet:h-[50px] tablet:w-[200px] w-[100px] tablet:text-[16px] text-[10px] h-[25px]">
               {" "}
               - Remove Liquidity
@@ -57,21 +71,21 @@ const MyPosition = () => {
 
           <div className="flex justify-between text-white tablet:px-10  px-2 py-5 ">
             <p>My Position Size</p>
-            <p>222k</p>
+            <p>{myPositionSize}</p>
           </div>
           <div className="flex justify-between text-white tablet:px-10  px-2  py-5 ">
             <p>Utilization Rate</p>
-            <p>33%</p>
+            <p>{utilisationRate}</p>
           </div>
 
           <div className="flex justify-between text-white tablet:px-10  px-2  py-5 ">
             <p>Invariant Value (k)</p>
-            <p>100k</p>
+            <p>{valueOfInvriant}</p>
           </div>
 
           <div className="flex justify-between text-white tablet:px-10  px-2  py-5 ">
             <p>Total Position Size</p>
-            <p>10000k</p>
+            <p>{myPositionSize}</p>
           </div>
         </div>
       </div>

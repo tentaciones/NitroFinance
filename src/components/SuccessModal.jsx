@@ -26,7 +26,7 @@ const SuccessModal = ({ transactionHash, setShowSuccessModal }) => {
             Transaction Successful
           </p>
           <a
-            href={"https://goerli.arbiscan.io/tx/" + transactionHash.toString()}
+            href={"https://goerli.etherscan.io/" + transactionHash.toString()}
             className="text-[#0987D3] border-b border-[#0987D3]"
           >
             view on Arbitrum scan

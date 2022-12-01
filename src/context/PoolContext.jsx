@@ -263,9 +263,9 @@ export const Logic = ({ children }) => {
   useEffect(() => {
     updateBlockNumber();
   });
-  useEffect(() => {
+  /*useEffect(() => {
     getAllMarketHandler();
-  }, []);
+  }, []);*/
   return (
     <PoolContext.Provider
       value={{

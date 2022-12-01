@@ -5,13 +5,13 @@ import { PoolContext } from "../context/PoolContext";
 
 export const MyDropDown = (props) => {
   const { allMarket } = useContext(PoolContext);
-  const [chosen, setChosen] = useState(null);
-  const [chosenTokenAddress, setChosenTokenAddress] = useState(null);
+  const [chosen, setChosen] = useState("");
+
   const { address, token0, token1 } = useParams();
 
   const onChangeHandler = (e) => {
     setChosen(e.target.value);
-    setChosenTokenAddress(e.target.value2);
+
     //console.log(chosen);
     console.log(e.target.id);
 

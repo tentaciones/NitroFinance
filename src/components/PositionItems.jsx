@@ -6,9 +6,9 @@ const PositionItems = ({ open, positionQuery }) => {
   const { getAllMyPositions, myPositionItem, getNftData } =
     useContext(PoolContext);
 
-  useEffect(() => {
+  /*useEffect(() => {
     getAllMyPositions();
-  }, []);
+  }, []);*/
 
   const get = async (sol4ContractAddress, id, colFactor, intRate) => {
     getNftData(sol4ContractAddress, id, colFactor, intRate);

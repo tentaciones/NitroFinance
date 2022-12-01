@@ -94,7 +94,9 @@ const MarkettemExapnded = ({ close }) => {
         </div>
         <div className="bg-black w-full h-[70px] mt-5 px-5 rounded-md flex justify-between items-center">
           <div className="">
-            <p>Available Liquidity (00-00)</p>
+            <p>
+              Available Liquidity ({colFactor}-{intRate})
+            </p>
             <p>{colValue}</p>
           </div>
           <div className="">

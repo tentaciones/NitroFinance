@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import logo from "../assets/img/Nitro Finance logo design  1.png";
@@ -6,6 +6,26 @@ import logo from "../assets/img/Nitro Finance logo design  1.png";
 import { ConnectKitButton } from "connectkit";
 
 const Navbar = () => {
+  const [dashSelected, setDashSelected] = useState(false);
+  const [posSelected, setPosSelected] = useState(false);
+  const [MarkSelected, setMarkSelected] = useState(false);
+  const dashHandler = () => {
+    setPosSelected(false);
+    setMarkSelected(false);
+    setDashSelected(true);
+  };
+
+  const posHandler = () => {
+    setDashSelected(false);
+    setMarkSelected(false);
+    setPosSelected(true);
+  };
+
+  const MarkHandler = () => {
+    setDashSelected(false);
+    setPosSelected(false);
+    setMarkSelected(true);
+  };
   return (
     <div className=" h-[100px] w-screen bg-gray-100  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-[0.01] fixed top-0  z-[100]">
       <div className="laptop:px-[150px] tablet:px-[50px] pt-7 flex justify-between px-2">
@@ -20,11 +40,24 @@ const Navbar = () => {
             NITROFINANCE
           </div>
           <div className="text-white laptop:text-[15px] tablet:text-[15px]  text-[10px] flex laptop:mt-3 laptop:mx-0 tablet:mx-10 -mx-[50px] mt-12 tablet:mt-10 font-display laptop:space-x-10 space-x-10 laptop:ml-[250px]">
-            <Link to="/dashboard">
-              <p className="hover:text-[#00FDEE] hover:cursor-pointer">
-                Dashboard
-              </p>
-            </Link>
+            {dashSelected ? (
+              <div onClick={() => dashHandler()}>
+                <Link to="/dashboard">
+                  <p className="text-[#00FDEE] hover:cursor-pointer">
+                    Dashboard
+                  </p>
+                </Link>
+              </div>
+            ) : (
+              <div onClick={() => dashHandler()}>
+                <Link to="/dashboard">
+                  <p className="hover:text-[#00FDEE] hover:cursor-pointer">
+                    Dashboard
+                  </p>
+                </Link>
+              </div>
+            )}
+
             <Link to="/positions">
               <p className="hover:text-[#00FDEE] hover:cursor-pointer">
                 Positions

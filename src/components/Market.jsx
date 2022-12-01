@@ -9,12 +9,13 @@ import {
   SuccessModal,
 } from ".";
 import { PoolContext } from "../context/PoolContext";
+import Approving from "./Approving";
 const Market = () => {
   const [showBorrow, setShowBorrow] = useState(true);
   const [showAddCollateral, setShowAddCollateral] = useState(false);
   const [showWithdrawCollateral, setShowWithdrawCollateral] = useState(false);
 
-  const { transactionHash, showSuccessModal, setShowSuccessModal } =
+  const { transactionHash, showSuccessModal, setShowSuccessModal, approving } =
     useContext(PoolContext);
   const onShowBorrowHandler = () => {
     setShowAddCollateral(false);
@@ -118,6 +119,14 @@ const Market = () => {
             transactionHash={transactionHash}
             setShowSuccessModal={setShowSuccessModal}
           />
+        </div>
+      ) : (
+        <></>
+      )}
+
+      {approving ? (
+        <div className=" ">
+          <Approving />
         </div>
       ) : (
         <></>

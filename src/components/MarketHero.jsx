@@ -10,6 +10,7 @@ const MarketHero = ({ showLocusHandler }) => {
     getallUserCollateralItem,
     getallUserBorrowItem,
     getAllMyPositions,
+    gettAllLocusesUnderPool,
   } = useContext(PoolContext);
   const [showAllLocus, setShowAllLocus] = useState(false);
   const [show, setShow] = useState(false);
@@ -20,6 +21,7 @@ const MarketHero = ({ showLocusHandler }) => {
     getallUserCollateralItem();
     getallUserBorrowItem();
     getAllMyPositions();
+    gettAllLocusesUnderPool();
   };
   const showLocus = () => {
     setShowAllLocus(!showAllLocus);

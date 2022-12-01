@@ -31,10 +31,13 @@ const CollateralItem = ({ showCollateral, collateralQuery }) => {
           return (
             <Link to={"/dashboard/" + _contractAddress} key={_contractAddress}>
               <div
-                className="h-10 bg-[#10101B] border  rounded-md px-5 flex items-center justify-between border-indigo-600 hover:cursor-pointer mb-3"
+                className="h-10 bg-[#10101B] border  rounded-md px-8 flex items-center justify-between border-indigo-600 hover:cursor-pointer mb-3"
                 onClick={() => showCollateral()}
               >
-                <p>{_contractAddress}</p>
+                <p>
+                  {_contractAddress.toString().slice(0, 10)}...
+                  {_contractAddress.toString().slice(-8)}
+                </p>
                 <p>
                   {_token1}/{_token0}
                 </p>

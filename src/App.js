@@ -74,6 +74,15 @@ function App() {
                 element={<CreatePositionPage />}
               />
               <Route path="/positions" element={<PositionPage />} />
+              <Route
+                path="/positions/:token0/:token1/:market/:colFactor/:intRate/:nftId"
+                element={<PositionPage />}
+              />
+
+              <Route
+                path="/myPosition/:token0/:token1/:market/:colFactor/:intRate/:nftId"
+                element={<MyPositionPage />}
+              />
               <Route path="/myPosition" element={<MyPositionPage />} />
               <Route
                 path="/removeLiquidity"

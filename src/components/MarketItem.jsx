@@ -12,7 +12,7 @@ const MarketItem = ({ show, query }) => {
   return (
     <>
       {allMarket
-        .filter((data) => {
+        ?.filter((data) => {
           return query.toLowerCase() === ""
             ? data
             : data.token0.toLowerCase().includes(query.toLowerCase()) ||

@@ -7,8 +7,8 @@ import collateralAbi from "../contract/UsdcAbi.json";
 export const PoolContext = createContext();
 
 export const Logic = ({ children }) => {
-  const FactoryContractAddress = "0x52e6A6F28e5aeA5B6C9582fa90c153c17E39164D";
-  const NftManagerAddress = "0x988A44544cD98ACd99B600ed5993e0B5528c513c";
+  const FactoryContractAddress = "0x81ad9A97DEAF239De4908176048517eeC378EB6b";
+  const NftManagerAddress = "0x8C542feCb230464B467eAa7e8042990af5DdF2FB";
   const [FactoryContract, SetFactoryContract] = useState(null);
   const [NftManagerContract, setNftManagerContract] = useState(null);
   const [allMarket, setAllMarket] = useState([]);
@@ -28,7 +28,12 @@ export const Logic = ({ children }) => {
   const [collateralContractAddress, setCollateralContractAddress] =
     useState(null);
   const [amount, setAmount] = useState("");
-
+  const [LocuseUnderPoolItem, setLocuseUnderPoolItem] = useState([]);
+  const [image, setImage] = useState("");
+  const [approving, setApproving] = useState(false);
+  const [valueOfInvriant, setValueOfInvariant] = useState(null);
+  const [myPositionSize, setMyPositionSize] = useState(null);
+  const [utilisationRate, setUtilisationRate] = useState(null);
   const updateEthers = () => {
     let tempProvider = new ethers.providers.Web3Provider(window.ethereum);
     let tempSigner = tempProvider.getSigner();
@@ -102,6 +107,12 @@ export const Logic = ({ children }) => {
     setSol4Contract(sol4Contract);
   };
 
+  const gettAllLocusesUnderPool = async (sol4ContractAddress) => {
+    updateEthersSol4Contract(sol4ContractAddress);
+    let txn = sol4Contract.getAllMyPositions();
+    setLocuseUnderPoolItem(txn);
+  };
+
   const BorrowHandler = async (e, sol4ContractAddress) => {
     e.preventDefault();
     updateEthersSol4Contract(sol4ContractAddress);
@@ -116,6 +127,26 @@ export const Logic = ({ children }) => {
     SetTransactionHash(txn.hash);
     setShowSuccessModal(true);
     console.log(txn);
+  };
+
+  const getNftData = async (sol4ContractAddress, id, colFactor, intRate) => {
+    updateEthersSol4Contract(sol4ContractAddress);
+    let image = await sol4Contract.buildImage(id);
+    console.log(image);
+    let myPositionSize = await sol4Contract.getpositionSize(colFactor, intRate);
+    let valueOfInvriant = await sol4Contract.getValueofInvariant(
+      colFactor,
+      intRate
+    );
+    let utilisationRate = await sol4Contract.getUtilisationRate(
+      colFactor,
+      intRate
+    );
+    console.log("lll");
+    setImage(image);
+    setUtilisationRate(utilisationRate.toString());
+    setValueOfInvariant(valueOfInvriant.toString());
+    setMyPositionSize(myPositionSize.toString());
   };
 
   const withdrawHandler = async (e, sol4ContractAddress) => {
@@ -161,9 +192,10 @@ export const Logic = ({ children }) => {
     console.log(sol4ContractAddress);
     let amount = e.target.amount.value;
     let txn = collateralcontract.approve(sol4ContractAddress, amount);
+    setApproving(true);
     setAmount(e.target.value);
     setApproved(true);
-
+    setApproving(false);
     setButtonText("Add");
   };
 
@@ -237,6 +269,11 @@ export const Logic = ({ children }) => {
         amount,
         withdrawHandler,
         BorrowHandler,
+        gettAllLocusesUnderPool,
+        LocuseUnderPoolItem,
+        image,
+        getNftData,
+        approving,
       }}
     >
       {children}

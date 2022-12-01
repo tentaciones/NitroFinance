@@ -120,7 +120,12 @@
       },
       {
         "internalType": "string",
-        "name": "_pairOf",
+        "name": "_token0",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_token1",
         "type": "string"
       }
     ],
@@ -149,7 +154,12 @@
       },
       {
         "internalType": "string",
-        "name": "_pairOf",
+        "name": "_token0",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_token1",
         "type": "string"
       }
     ],
@@ -222,8 +232,28 @@
       },
       {
         "internalType": "string",
-        "name": "_pairOf",
+        "name": "_token0",
         "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_token1",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_collateralFactor",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_interestRate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_nftId",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -387,6 +417,16 @@
         "internalType": "address",
         "name": "pool",
         "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "token0",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "token1",
+        "type": "string"
       }
     ],
     "name": "createPosition",
@@ -413,11 +453,16 @@
           },
           {
             "internalType": "string",
-            "name": "_pairOf",
+            "name": "_token0",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "_token1",
             "type": "string"
           }
         ],
-        "internalType": "struct NFTManager.ALLMYPOSITIONDATA[]",
+        "internalType": "struct NFTManager.ALLPOSITIONDATA[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -438,11 +483,16 @@
           },
           {
             "internalType": "string",
-            "name": "_pairOf",
+            "name": "_token0",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "_token1",
             "type": "string"
           }
         ],
-        "internalType": "struct NFTManager.ALLMYPOSITIONDATA[]",
+        "internalType": "struct NFTManager.ALLPOSITIONDATA[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -483,8 +533,28 @@
           },
           {
             "internalType": "string",
-            "name": "_pairOf",
+            "name": "_token0",
             "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "_token1",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_collateralFactor",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_interestRate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nftId",
+            "type": "uint256"
           }
         ],
         "internalType": "struct NFTManager.ALLMYPOSITIONDATA[]",
@@ -833,7 +903,12 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "pairOf",
+        "name": "_token0",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_token1",
         "type": "string"
       },
       {
@@ -856,7 +931,12 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "pairOf",
+        "name": "_token0",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_token1",
         "type": "string"
       },
       {

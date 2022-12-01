@@ -214,13 +214,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "addCollateralETH",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -373,6 +366,25 @@
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "buildImage",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "img",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -678,11 +690,59 @@
         "type": "uint256"
       }
     ],
+    "name": "getUtilisationRate",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "utilisationRate",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_collateralFactor",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_interestRate",
+        "type": "uint256"
+      }
+    ],
     "name": "getValueofInvariant",
     "outputs": [
       {
         "internalType": "uint256",
         "name": "invariantValue",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_collateralFactor",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_interestRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "getpositionSize",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "positionSize",
         "type": "uint256"
       }
     ],

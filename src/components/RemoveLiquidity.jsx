@@ -99,16 +99,12 @@ const RemoveLiquidity = () => {
                 className="w-full h-[70px] rounded-xl mt-5 relative bg-[#221E2B] px-10 placeholder:text-[#999999] outline-none"
                 placeholder="colfactor %"
                 id="ColFactor"
-                onChange={(e) => setColI(e)}
-                value={ColFactor}
               />
               <input
                 type="number"
                 className="w-full h-[70px] rounded-xl mt-5 relative bg-[#221E2B] px-10 placeholder:text-[#999999] outline-none"
                 placeholder="interestRate %"
                 id="interest"
-                onChange={(e) => setIntC(e)}
-                value={intrate}
               />
             </div>
 

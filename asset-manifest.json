@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/NitroFinance/static/css/main.7bc91e4e.css",
-    "main.js": "/NitroFinance/static/js/main.b70d0b02.js",
+    "main.css": "/NitroFinance/static/css/main.32274280.css",
+    "main.js": "/NitroFinance/static/js/main.0969b312.js",
     "static/js/563.35551e83.chunk.js": "/NitroFinance/static/js/563.35551e83.chunk.js",
     "static/js/942.454de38a.chunk.js": "/NitroFinance/static/js/942.454de38a.chunk.js",
     "static/js/787.a35b463f.chunk.js": "/NitroFinance/static/js/787.a35b463f.chunk.js",
@@ -14,14 +14,14 @@
     "static/media/illus-1.png": "/NitroFinance/static/media/illus-1.403c9456794ea8bbfba5.png",
     "static/media/Empty state.png": "/NitroFinance/static/media/Empty state.171690a843d0efed3ec2.png",
     "index.html": "/NitroFinance/index.html",
-    "main.7bc91e4e.css.map": "/NitroFinance/static/css/main.7bc91e4e.css.map",
-    "main.b70d0b02.js.map": "/NitroFinance/static/js/main.b70d0b02.js.map",
+    "main.32274280.css.map": "/NitroFinance/static/css/main.32274280.css.map",
+    "main.0969b312.js.map": "/NitroFinance/static/js/main.0969b312.js.map",
     "787.a35b463f.chunk.js.map": "/NitroFinance/static/js/787.a35b463f.chunk.js.map",
     "419.b8da6407.chunk.js.map": "/NitroFinance/static/js/419.b8da6407.chunk.js.map",
     "163.65ba5772.chunk.js.map": "/NitroFinance/static/js/163.65ba5772.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7bc91e4e.css",
-    "static/js/main.b70d0b02.js"
+    "static/css/main.32274280.css",
+    "static/js/main.0969b312.js"
   ]
 }
